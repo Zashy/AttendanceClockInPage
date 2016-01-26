@@ -1,0 +1,31 @@
+/* was too lazy to get postcss-import working, so just update this file to recompile the CSS*/
+$aaaa: 1em;
+
+@import 'variables.scss';
+@import 'colours.scss';
+@import 'button.scss';
+@import 'touchscreenHeader.scss';
+@import 'touchscreenFooter.scss';
+@import 'paperlessLogo.scss';
+@import 'attendanceClock.scss';
+@import 'attendanceClockInOut.scss';
+
+
+html{
+	box-sizing:border-bo
+}
+body{
+	background-color:$background-white;
+	color:$text-blue;
+	margin:0;
+	font-size:$font-size;
+	font-family:Verdana, Geneva, sans-serif;
+}
+hr{
+	color:$ppl-blue-dark;
+}
+
+.main{
+	margin:0 $page-margin;
+	font-size:1.6em;
+}

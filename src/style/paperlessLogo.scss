@@ -1,0 +1,15 @@
+
+.ppl-logo {
+	padding:6px 6px 3px 3px;
+	.outer-p {
+		fill: $ppl-logo-red;
+	}
+
+	.outer-l {
+		fill: $ppl-logo-blue;
+	}
+
+	.inner-p, .inner-l {
+		fill: $ppl-logo-white;
+	}
+}

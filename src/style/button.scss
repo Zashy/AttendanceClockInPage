@@ -1,0 +1,21 @@
+.touchscreen{
+	button{
+		border:1px solid $button-border;
+		box-shadow: $shadow-grey 1px 1px 0px;
+		border-radius: 3px;
+		font-size:2em;
+		font-weight:bold;
+		padding: 6px;
+		text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+		color: $pop-white;
+		background-color:$ppl-blue-grey;
+		background-image: linear-gradient(to bottom, $ppl-blue-grey, $ppl-blue-light);
+		margin: 0 0.5em;
+	}
+
+	button:hover{
+		border:1px solid $button-border-hover;
+		background-color:$button-background-hover;
+		background-image: linear-gradient(to bottom, $button-blue-gradient-start, $button-blue-gradient-end);
+	}
+}

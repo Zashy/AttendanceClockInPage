@@ -1,0 +1,72 @@
+.clock-in-out{
+	text-align:center;
+	margin:$page-margin 0;
+	.entry{
+		font-size:1.5em;
+		text-align:right;
+		label, input{
+			width:40%;
+			display:inline-block;
+		}
+		label{
+			text-align:right;
+			margin: 7px 0;
+			padding: 6px 0;
+		}
+		input{
+			position:relative;
+			top:-3px;
+			line-height:2;
+			box-shadow:0 0 1px $shadow-grey-dark;
+		}
+	}
+	.buttons, .entry{
+		display:block;
+		width:50%;
+		float:left;
+	}
+	.data{
+		display:inline-block;
+	}
+	button{
+		font-size:1.5em;
+		float:left;
+		clear:both;
+		margin-top:7px;
+	}
+	.information{
+		margin-top:$page-margin2;
+		h1{
+			font-size:1em;
+			margin:0;
+			padding:0;
+			position:relative;
+			top:-0.6em;
+			background-color:$background-white;
+			width:4em;
+			margin-left:50%;
+			left:-2em;
+		}
+		.status, .error{
+			width:50%;
+			display:inline-block;
+			border:2px solid $ppl-blue-dark;
+			border-radius:3px;
+			padding-bottom:$page-margin;
+		}
+		.error{
+			display:none;
+			.message{
+				color:$ppl-message-error;
+			}
+		}
+		.status .message{
+			color:$ppl-message;
+		}
+		.message{
+			word-wrap:break-word;
+			text-shadow:0 1px $shadow-grey;
+			display:none;
+		}
+	}
+}

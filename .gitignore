@@ -1,0 +1,15 @@
+#Webstorm
+.idea/
+*.iml
+/out/
+.idea_modules/
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+
+#node.js
+node_modules
+
+#RANDOM.ORG API key file
+random.org-api-key.txt
+keyUtil.js

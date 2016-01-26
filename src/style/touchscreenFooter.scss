@@ -1,0 +1,14 @@
+.footer{
+	margin:0 $page-margin $page-margin;
+	.flex-container{
+		display:flex;
+		flex-direction:row;
+		.left, .right{
+			flex-grow:1;
+		}
+		.right{
+			display:flex;
+			flex-direction:row-reverse;
+		}
+	}
+}
