@@ -1,3 +1,6 @@
 {
-  "date": "January, 29 2016 20:03:33"
+  "date": "January, 28 2016 20:03:33",
+  "variable": {
+	"variable2": "value"
+  }
 }

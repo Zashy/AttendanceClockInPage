@@ -11,7 +11,7 @@
 		label{
 			text-align:right;
 			margin: 7px 0;
-			padding: 6px 0;
+			padding: 6px 3px;
 		}
 		input{
 			position:relative;
@@ -48,7 +48,7 @@
 			left:-2em;
 		}
 		.status, .error{
-			width:50%;
+			width:70%;
 			display:inline-block;
 			border:2px solid $ppl-blue-dark;
 			border-radius:3px;
@@ -67,6 +67,36 @@
 			word-wrap:break-word;
 			text-shadow:0 1px $shadow-grey;
 			display:none;
+		}
+	}
+}
+
+@media screen and (min-device-width:200px) and (max-device-width:767px) and (orientation:portrait){
+	.clock-in-out{
+		.entry, .buttons{
+			float:none;
+			width:auto;
+		}
+		.entry{
+			text-align:center;
+			input{
+				line-height:1;
+			}
+		}
+		.buttons{
+			display:inline-block;
+		}
+		button{
+			float:none;
+		}
+	}
+}
+@media screen and (min-device-width:480px) and (max-device-width:1023px) and (orientation:landscape){
+	.clock-in-out {
+		.entry {
+			input {
+				line-height: 1;
+			}
 		}
 	}
 }

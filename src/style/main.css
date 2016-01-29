@@ -1,5 +1,5 @@
 /* was too lazy to get postcss-import working, so just update this file to recompile the CSS*/
-$aaaa: 1em;
+$aaaaa: 1em;
 
 @import 'variables.scss';
 @import 'colours.scss';
@@ -12,7 +12,7 @@ $aaaa: 1em;
 
 
 html{
-	box-sizing:border-bo
+	box-sizing:border-box;
 }
 body{
 	background-color:$background-white;
@@ -28,4 +28,15 @@ hr{
 .main{
 	margin:0 $page-margin;
 	font-size:1.6em;
+}
+
+@media screen and (min-device-width:200px) and (max-device-width:767px) and (orientation:portrait){
+	html body{
+		font-size: 6px;
+	}
+}
+@media screen and (min-device-width:480px) and (max-device-width:1023px) and (orientation:landscape){
+	html body{
+		font-size:6px;
+	}
 }

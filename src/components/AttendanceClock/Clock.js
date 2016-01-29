@@ -22,10 +22,18 @@ class Clock extends React.Component {
 	}
 
 	componentDidMount() {
+		this.hideClock();
 		this.drawClock();
 	}
 	componentWillReceiveProps(){
 		this.drawClock();
+	}
+
+	hideClock(){
+		document.getElementsByClassName('canvas-clock')[0].style.visibility = 'hidden';
+	}
+	showClock(){
+		document.getElementsByClassName('canvas-clock')[0].style.visibility = 'visible';
 	}
 
 	drawClock(){

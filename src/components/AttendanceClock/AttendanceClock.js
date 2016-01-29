@@ -31,6 +31,8 @@ class AttendanceClock extends React.Component {
 		};
 	}
 	getDString(date){
+		if(!date.getDate)
+			console.log(date);
 		var day = date.getDate(),
 			weekday = date.getDay(),
 			month = date.getMonth(),
@@ -57,6 +59,9 @@ class AttendanceClock extends React.Component {
 		clearInterval(this.refreshServerInterval);
 		clearInterval(this.refreshInterval);
 	}
+	componentDidUpdate(){
+		new Clock().showClock();
+	}
 	// refresh tasks
 	incrementDate(){
 		this.setState(function(previousState, currentProps){
@@ -77,11 +82,18 @@ class AttendanceClock extends React.Component {
 	render(){
 		// return the canvas with the height and width set from the props
 		return (
-			<div className="attendance-clock">
-				<div className="clock-text date">{this.state.dateString}</div>
-				<div className="clock-text time">{this.state.timeString}</div>
-				<Clock width={this.props.width} height={this.props.height} date={this.state.localDate} />
+			<div>
+				<div className="attendance-clock">
+					<div className="clock-text date">{this.state.dateString}</div>
+					<div className="clock-text time">{this.state.timeString}</div>
+					<Clock width={this.props.width} height={this.props.height} date={this.state.localDate} />
+					<input id="attendanceClockDateTime" type="hidden" value={this.state.localDate} />
+				</div>
+				<div>
+					<button onClick={this.onRefreshServer}>Refresh</button>
+				</div>
 			</div>
+
 		);
 	}
 
