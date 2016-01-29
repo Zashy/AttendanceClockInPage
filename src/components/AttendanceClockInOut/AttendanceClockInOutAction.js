@@ -16,6 +16,7 @@ var AttendanceClockInOutAction = {
 			password: password
 		});
 	},
+	// check status action
 	checkStatus: function(username, password){
 		AppDispatcher.dispatch({
 			actionType: constants.ATN_CHECK_STATUS,
@@ -23,12 +24,14 @@ var AttendanceClockInOutAction = {
 			password: password
 		});
 	},
+	// update the username action
 	updateUsername: function(username){
 		AppDispatcher.dispatch({
 			actionType: constants.ATN_UPDATE_USER,
 			username: username
 		});
 	},
+	// update the password action
 	updatePassword: function(password){
 		AppDispatcher.dispatch({
 			actionType: constants.ATN_UPDATE_PASS,
