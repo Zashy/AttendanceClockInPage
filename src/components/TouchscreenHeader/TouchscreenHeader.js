@@ -2,7 +2,7 @@
  * Created by Zashy on 1/21/2016.
  */
 
-// includes react and the PaperlessLogo component
+// require react and the PaperlessLogo component
 var React = require('react');
 var PaperlessLogo = require('../PaperlessLogo/PaperlessLogo.js');
 

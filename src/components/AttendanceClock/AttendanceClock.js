@@ -2,13 +2,18 @@
  * Created by Zashy on 1/22/2016.
  */
 
-// include react
+// require react
 var React = require('react');
+
+// require the flux architecture components (store and action)
 var AttendanceClockStore = require('./AttendanceClockStore');
 var AttendanceClockAction = require('./AttendanceClockAction');
+
+// require additional react components
 var Clock = require('./Clock');
 
-
+// constant arrays for the names to use for the months and days displayed
+// alternatively exteral libraries such as Date.js could handle the date formatting
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -52,15 +57,13 @@ class AttendanceClock extends React.Component {
 		AttendanceClockStore.addChangeListener(this._onChange.bind(this));
 		this.refreshServerInterval = setInterval(this.onRefreshServer, 5*60*1000);
 		this.refreshInterval = setInterval(this.incrementDate.bind(this), 1000);
+		this.hideClockArea();
 	}
 	// remove event when component is unmounted
 	componentWillUnmount(){
 		AttendanceClockStore.removeChangeListener(this._onChange.bind(this));
 		clearInterval(this.refreshServerInterval);
 		clearInterval(this.refreshInterval);
-	}
-	componentDidUpdate(){
-		new Clock().showClock();
 	}
 	// refresh tasks
 	incrementDate(){
@@ -74,25 +77,27 @@ class AttendanceClock extends React.Component {
 				timeString: this.getTString(previousState.localDate)
 			};
 		});
+		this.showClockArea();
 	}
 	onRefreshServer(){
 		AttendanceClockAction.refreshServer();
+	}
+	showClockArea(){
+		document.getElementsByClassName('attendance-clock')[0].style.visibility = 'visible';
+	}
+	hideClockArea(){
+		document.getElementsByClassName('attendance-clock')[0].style.visibility = 'hidden';
 	}
 	// render function to render the jsx of the page
 	render(){
 		// return the canvas with the height and width set from the props
 		return (
-			<div>
-				<div className="attendance-clock">
+				<div className="attendance-clock" style={this.state.acStyle}>
 					<div className="clock-text date">{this.state.dateString}</div>
 					<div className="clock-text time">{this.state.timeString}</div>
 					<Clock width={this.props.width} height={this.props.height} date={this.state.localDate} />
 					<input id="attendanceClockDateTime" type="hidden" value={this.state.localDate} />
 				</div>
-				<div>
-					<button onClick={this.onRefreshServer}>Refresh</button>
-				</div>
-			</div>
 
 		);
 	}

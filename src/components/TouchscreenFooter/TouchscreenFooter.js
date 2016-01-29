@@ -2,7 +2,7 @@
  * Created by Zashy on 1/21/2016.
  */
 
-// includes react
+// require react
 var React = require('react');
 
 // create the TouchscreenFooter react component

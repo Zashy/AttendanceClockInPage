@@ -34,12 +34,10 @@ function _fauxFetch(callback){
 		throw new error("Status not OK");
 	}).then(function(results){
 		fetchSuccess(results);
-		if(callback)
-			callback();
+		callback();
 	}).catch(function(error){
 		fetchError(error);
-		if(callback)
-			callback();
+		callback();
 	});
 }
 function fetchSuccess(result){

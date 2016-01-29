@@ -33,7 +33,6 @@ class AttendanceClockInOut extends React.Component{
 		Array.prototype.forEach.call(messages, function(element){
 			element.style.display = 'inline-block';
 		});
-		console.log('p');
 		Array.prototype.forEach.call(inputs, function(element){
 			element.value = '';
 		});

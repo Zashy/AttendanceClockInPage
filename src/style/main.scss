@@ -1,4 +1,9 @@
-/* was too lazy to get postcss-import working, so just update this file to recompile the CSS*/
+/*
+	These are not actual sass files in this project, although they are syntactically identical to SASS.
+	The project compiles the CSS using postcss which supports the basic features of SASS used here.
+*/
+
+/* was too lazy to get postcss-import working, so just update this variable (or file) to recompile the CSS*/
 $aaaaa: 1em;
 
 @import 'variables.scss';
