@@ -13,7 +13,7 @@ var AttendanceClockAction = require('./AttendanceClockAction');
 var Clock = require('./Clock');
 
 // constant arrays for the names to use for the months and days displayed
-// alternatively exteral libraries such as Date.js could handle the date formatting
+// alternatively external libraries such as Date.js could handle the date formatting
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -27,6 +27,7 @@ class AttendanceClock extends React.Component {
 	}
 	// get the current state
 	getClockState(){
+		// this retrieves the date from the store
 		var currentDate = AttendanceClockStore.getDate();
 		return {
 			date: currentDate,
@@ -35,6 +36,7 @@ class AttendanceClock extends React.Component {
 			timeString: this.getTString(currentDate)
 		};
 	}
+	// formats the date string for display on the page
 	getDString(date){
 		if(!date.getDate)
 			console.log(date);
@@ -44,6 +46,7 @@ class AttendanceClock extends React.Component {
 			year = date.getFullYear();
 		return days[weekday] + ' ' + months[month] + ' ' + day + ', ' + year;
 	}
+	// formats the time string for display on the page
 	getTString(date){
 		var	hour = date.getHours(),
 			minute = date.getMinutes(),
@@ -52,20 +55,21 @@ class AttendanceClock extends React.Component {
 				(minute.toString().length==1?'0'+minute:minute) + ':' +
 				(second.toString().length==1?'0'+second:second);
 	}
-	// set event for when component is mounted
+	// set up change event for when the store is changed
+	// also sets up the timing intervals to update the clock and refresh the store
 	componentDidMount() {
 		AttendanceClockStore.addChangeListener(this._onChange.bind(this));
 		this.refreshServerInterval = setInterval(this.onRefreshServer, 5*60*1000);
 		this.refreshInterval = setInterval(this.incrementDate.bind(this), 1000);
 		this.hideClockArea();
 	}
-	// remove event when component is unmounted
+	// remove events and intervals when component is unmounted
 	componentWillUnmount(){
 		AttendanceClockStore.removeChangeListener(this._onChange.bind(this));
 		clearInterval(this.refreshServerInterval);
 		clearInterval(this.refreshInterval);
 	}
-	// refresh tasks
+	// locally increments the date by setting the state to date+1 second
 	incrementDate(){
 		this.setState(function(previousState, currentProps){
 			previousState.localDate.setSeconds(previousState.localDate.getSeconds()+1);
@@ -79,15 +83,18 @@ class AttendanceClock extends React.Component {
 		});
 		this.showClockArea();
 	}
+	// requests the store to refresh the date through an action
 	onRefreshServer(){
 		AttendanceClockAction.refreshServer();
 	}
+	// the following show or hide the clock to prevent the clock from showing incorrect data on first page load
 	showClockArea(){
 		document.getElementsByClassName('attendance-clock')[0].style.visibility = 'visible';
 	}
 	hideClockArea(){
 		document.getElementsByClassName('attendance-clock')[0].style.visibility = 'hidden';
 	}
+
 	// render function to render the jsx of the page
 	render(){
 		// return the canvas with the height and width set from the props
@@ -102,6 +109,8 @@ class AttendanceClock extends React.Component {
 		);
 	}
 
+	// this is the event that is registered to the store to fire when the store's data has changed
+	// this sets the state to the new state from the store
 	_onChange() {
 		this.setState(this.getClockState());
 	}
