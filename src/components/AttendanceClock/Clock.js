@@ -21,24 +21,19 @@ class Clock extends React.Component {
 		);
 	}
 
+	// react calls this once when the component first mounts on the page
 	componentDidMount() {
 		this.drawClock();
 	}
+	// react calls this every time new property values are recieved
 	componentWillReceiveProps(){
 		this.drawClock();
 	}
-	hideClock(){
-		document.getElementsByClassName('canvas-clock')[0].style.visibility = 'hidden';
-	}
-	showClock(){
-		document.getElementsByClassName('canvas-clock')[0].style.visibility = 'visible';
-	}
-
+	// draws the clock
 	drawClock(){
 		this.canvas = document.getElementsByClassName('canvas-clock')[0];
 		this.ctx = this.canvas.getContext('2d');
 		this.percent = Math.min(this.props.width, this.props.height)*0.40;
-		//this.props.date.setSeconds(this.props.date.getSeconds() + 1);
 
 		this.ctx.clearRect(0, 0, this.props.width, this.props.height);
 		this.ctx.lineWidth = this.percent*0.01;
