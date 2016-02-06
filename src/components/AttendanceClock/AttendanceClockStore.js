@@ -27,6 +27,8 @@ function _fauxFetch(callback){
 		headers: header,
 		mode: 'cors'
 	};
+
+	// the new javascript fetch, uses a polyfill to emulate the functionality
 	fetch(encodedURL, init).then(function(response){
 		if(response.status>=200 && response.status<300) {
 			return response.json();
@@ -40,10 +42,13 @@ function _fauxFetch(callback){
 		callback();
 	});
 }
+
+// what to do with the fetch results on success
 function fetchSuccess(result){
 	fetchResult = 'success';
 	date = new Date(result.date);
 }
+// what to do on error
 function fetchError(error){
 	fetchResult = 'failure';
 	// var errorMessage = error.message idk what the api returns
@@ -66,19 +71,19 @@ var AttendanceClockStore = assign({}, EventEmitter.prototype, {
 		}
 		return date;
 	},
-
+	// emites the change event for components to know to update
 	emitChange: function(){
 		this.emit('change');
 	},
-
+	// allows components to subscribe to the change event
 	addChangeListener: function(callback) {
 		this.on('change', callback);
 	},
-
+	// allows components to unsubscribe
 	removeChangeListener: function(callback) {
 		this.removeListener('change', callback);
 	},
-
+	// handles dispatched events from the actions
 	dispatcherIndex: AppDispatcher.register(function(payload) {
 
 		switch(payload.actionType){
